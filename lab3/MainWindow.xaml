@@ -1,0 +1,30 @@
+﻿<Window x:Class="lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Assembly Browser" Height="390" Width="640">
+    <Grid>
+        <TreeView ItemsSource="{Binding Namespaces}" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="600">
+            <TreeView.ItemTemplate>
+                <DataTemplate>
+                    <TreeViewItem Header="{Binding Name}" ItemsSource="{Binding Classes}" BorderThickness="0">
+                        <TreeViewItem.ItemTemplate>
+                            <DataTemplate>
+                                <TreeViewItem Header="{Binding Name}" ItemsSource="{Binding Members}" BorderThickness="0" IsExpanded="False">
+                                    <TreeViewItem.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding FullName}"/>
+                                        </DataTemplate>
+                                    </TreeViewItem.ItemTemplate>
+                                </TreeViewItem>
+                            </DataTemplate>
+                        </TreeViewItem.ItemTemplate>
+                    </TreeViewItem>
+                </DataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Button Command="{Binding OpenFile}" Content="Choose assembly" HorizontalAlignment="Left" Margin="260,320,0,0" VerticalAlignment="Top" Width="100"/>
+    </Grid>
+</Window>
